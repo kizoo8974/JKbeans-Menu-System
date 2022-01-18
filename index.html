@@ -2,13 +2,90 @@
 <html lang="kr">
 <head>
   <meta charset="UTF-8" />
-  <title>JKbeans Menu</title>
+  <title>JKbeans Menu System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="shortcut icon" href="src/images/favicon.ico" />
   <link rel="icon" href="src/images/favicon.png" />
   <link rel="stylesheet" href="src/css/index.css" />
 </head>
 <body>
+
+  <div id="app" class="px-4">
+    <div class="d-flex justify-center mt-5 w-100">
+      <div class="w-100">
+        <header class="my-4">
+          <a href="/" class="text-black">
+            <h1 class="text-center font-bold">🌝 JKbeans Coffee</h1>
+          </a>
+          <nav class="d-flex justify-center flex-wrap">
+            <button
+                    data-category-name="espresso"
+                    class="cafe-category-name btn bg-white shadow mx-1"
+            >
+              ☕ Espresso
+            </button>
+            <button
+                    data-category-name="frappuccino"
+                    class="cafe-category-name btn bg-white shadow mx-1"
+            >
+              🥤 Black
+            </button>
+            <button
+                    data-category-name="blended"
+                    class="cafe-category-name btn bg-white shadow mx-1"
+            >
+              🍹 Frappuccino
+            </button>
+            <button
+                    data-category-name="teavana"
+                    class="cafe-category-name btn bg-white shadow mx-1"
+            >
+            ☕ Latte
+            </button>
+            <button
+                    data-category-name="desert"
+                    class="cafe-category-name btn bg-white shadow mx-1"
+            >
+              🍰 Cake
+            </button>
+          </nav>
+        </header>
+        <main class="mt-10 d-flex justify-center">
+          <div class="wrapper bg-white p-10">
+            <div class="heading d-flex justify-between">
+              <h2 class="mt-1">☕ Menu system</h2>
+              <span class="mr-2 mt-4 menu-count">Quantity : </span>
+            </div>
+            <form id="espresso-menu-form">
+              <div class="d-flex w-100">
+                <label for="espresso-menu-name" class="input-label" hidden>
+                  Espresso Menu 
+                </label>
+                <input
+                        type="text"
+                        id="espresso-menu-name"
+                        name="espressoMenuName"
+                        class="input-field"
+                        placeholder="Menu ..."
+                        autocomplete="off"
+                />
+                <button
+                        type="button"
+                        name="submit"
+                        id="espresso-menu-submit-button"
+                        class="input-submit bg-green-600 ml-2"
+                >
+                  Enter
+                </button>
+              </div>
+            </form>
+            <ul id="espresso-menu-list" class="mt-3 pl-0"></ul>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
 <script type="module" src="./src/js/index.js"></script>
 </body>
 </html>
