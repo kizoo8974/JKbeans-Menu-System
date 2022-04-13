@@ -10,7 +10,7 @@ function App() {
     $("#espresso-menu-name")
     .addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
-            const $espressoMenuName =
+            const espressoMenuName =
             $("#espresso-menu-name").value;
             const menuItemTemplate = (espressoMenuName) => { 
                 return `
@@ -20,17 +20,18 @@ function App() {
               type="button"
               class="bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
             >
-              수정
+              Edit
             </button>
             <button
               type="button"
               class="bg-gray-50 text-gray-500 text-sm menu-remove-button"
             >
-              삭제
+              Delete
             </button>
           </li>`;
             };
-            console.log(menuItemTemplate(espressoMenuName));
+            
+            $("#espresso-menu-list").innerHTML = menuItemTemplate(espressoMenuName);
         }
         
     });
