@@ -31,7 +31,18 @@ function App() {
           </li>`;
             };
             
-            $("#espresso-menu-list").innerHTML = menuItemTemplate(espressoMenuName);
+            // <!-- beforebegin -->
+            // <p>
+            // <!-- afterbegin -->
+            // foo
+            // <!-- beforeend -->
+            // </p>
+            // <!-- afterend -->
+            $("#espresso-menu-list").insertAdjacentHTML("beforeend", menuItemTemplate(espressoMenuName));
+
+            // Menu count
+            const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
+            $(".menu-count").innerText = `Quantity : ${menuCount}`;
         }
         
     });
