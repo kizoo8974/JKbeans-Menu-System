@@ -9,6 +9,14 @@ function App() {
     // fetch Menu input value
     $("#espresso-menu-name")
     .addEventListener("keypress", (e) => {
+      if (e.key !== "Enter") {
+        return;
+      }
+      // Preventing entry of empty values
+      if ($("#espresso-menu-name").value === "") {
+        alert("Please, enter menu name.");
+        return;
+      }
         if (e.key === "Enter") {
             const espressoMenuName =
             $("#espresso-menu-name").value;
@@ -40,11 +48,12 @@ function App() {
             // <!-- afterend -->
             $("#espresso-menu-list").insertAdjacentHTML("beforeend", menuItemTemplate(espressoMenuName));
 
-            // Menu count
+            // Menu name counting
             const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
             $(".menu-count").innerText = `Quantity : ${menuCount}`;
-            // reset
+            // Menu name reset
             $("#espresso-menu-name").value = "";
+            
         }
         
     });
