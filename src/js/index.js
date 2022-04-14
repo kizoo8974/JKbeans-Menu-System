@@ -43,6 +43,8 @@ function App() {
             // Menu count
             const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
             $(".menu-count").innerText = `Quantity : ${menuCount}`;
+            // reset
+            $("#espresso-menu-name").value = "";
         }
         
     });
