@@ -5,19 +5,15 @@ function App() {
     // form tag prevent default setting
     $("#espresso-menu-form").addEventListener("submit", (e) => {
         e.preventDefault();
-    })
-    // fetch Menu input value
-    $("#espresso-menu-name")
-    .addEventListener("keypress", (e) => {
-      if (e.key !== "Enter") {
-        return;
-      }
+    });
+
+    const addMenuName = () => {
       // Preventing entry of empty values
       if ($("#espresso-menu-name").value === "") {
         alert("Please, enter menu name.");
         return;
       }
-        if (e.key === "Enter") {
+        
             const espressoMenuName =
             $("#espresso-menu-name").value;
             const menuItemTemplate = (espressoMenuName) => { 
@@ -54,8 +50,21 @@ function App() {
             // Menu name reset
             $("#espresso-menu-name").value = "";
             
-        }
+       
         
+    };
+
+    $("#espresso-menu-submit-button").addEventListener("click", () => {
+      addMenuName();
+    });
+
+    // fetch Menu input value
+    $("#espresso-menu-name")
+    .addEventListener("keypress", (e) => {
+      if (e.key !== "Enter") {
+        return;
+      }
+      addMenuName();
     });
 }
 
