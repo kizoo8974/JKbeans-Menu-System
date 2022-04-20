@@ -2,6 +2,19 @@
 const $ = (selector) => document.querySelector(selector);
 
 function App() {
+
+    // Menu list Edit button setting
+    $("#espresso-menu-list").addEventListener("click", (e) => {
+      
+      if (e.target.classList.contains("menu-edit-button")) {
+        const $menuName = e.target.closest("li").querySelector(".menu-name");
+        const updatedMenuName = prompt("Please, edit menu name.", $menuName.innerText );
+        $menuName.innerText = updatedMenuName;
+      }
+
+    });
+
+
     // form tag prevent default setting
     $("#espresso-menu-form").addEventListener("submit", (e) => {
         e.preventDefault();
@@ -10,6 +23,7 @@ function App() {
     const addMenuName = () => {
       // Preventing entry of empty values
       if ($("#espresso-menu-name").value === "") {
+        
         alert("Please, enter menu name.");
         return;
       }
