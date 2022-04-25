@@ -3,6 +3,12 @@ const $ = (selector) => document.querySelector(selector);
 
 function App() {
 
+    // counting menu name
+    const updateMenuCount = () => {
+      const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
+            $(".menu-count").innerText = `Quantity : ${menuCount}`;
+    }
+
     // Menu list Edit button setting
     $("#espresso-menu-list").addEventListener("click", (e) => {
       
@@ -10,6 +16,14 @@ function App() {
         const $menuName = e.target.closest("li").querySelector(".menu-name");
         const updatedMenuName = prompt("Please, edit menu name.", $menuName.innerText );
         $menuName.innerText = updatedMenuName;
+      }
+
+      // Delete menu setting
+      if (e.target.classList.contains("menu-remove-button")) {
+        if (confirm("Are you sure you want to delete it?")) {
+          e.target.closest("li").remove();
+          updateMenuCount();
+        }
       }
 
     });
@@ -59,8 +73,7 @@ function App() {
             $("#espresso-menu-list").insertAdjacentHTML("beforeend", menuItemTemplate(espressoMenuName));
 
             // Menu name counting
-            const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
-            $(".menu-count").innerText = `Quantity : ${menuCount}`;
+            updateMenuCount();
             // Menu name reset
             $("#espresso-menu-name").value = "";
             
@@ -80,6 +93,10 @@ function App() {
       }
       addMenuName();
     });
+
+
+    
+
 }
 
 App();
