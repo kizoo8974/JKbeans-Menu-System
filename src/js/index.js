@@ -7,32 +7,7 @@ function App() {
     const updateMenuCount = () => {
       const menuCount = $("#espresso-menu-list").querySelectorAll("li").length
             $(".menu-count").innerText = `Quantity : ${menuCount}`;
-    }
-
-    // Menu list Edit button setting
-    $("#espresso-menu-list").addEventListener("click", (e) => {
-      
-      if (e.target.classList.contains("menu-edit-button")) {
-        const $menuName = e.target.closest("li").querySelector(".menu-name");
-        const updatedMenuName = prompt("Please, edit menu name.", $menuName.innerText );
-        $menuName.innerText = updatedMenuName;
-      }
-
-      // Delete menu setting
-      if (e.target.classList.contains("menu-remove-button")) {
-        if (confirm("Are you sure you want to delete it?")) {
-          e.target.closest("li").remove();
-          updateMenuCount();
-        }
-      }
-
-    });
-
-
-    // form tag prevent default setting
-    $("#espresso-menu-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-    });
+    };
 
     const addMenuName = () => {
       // Preventing entry of empty values
@@ -63,13 +38,7 @@ function App() {
           </li>`;
             };
             
-            // <!-- beforebegin -->
-            // <p>
-            // <!-- afterbegin -->
-            // foo
-            // <!-- beforeend -->
-            // </p>
-            // <!-- afterend -->
+           
             $("#espresso-menu-list").insertAdjacentHTML("beforeend", menuItemTemplate(espressoMenuName));
 
             // Menu name counting
@@ -77,25 +46,48 @@ function App() {
             // Menu name reset
             $("#espresso-menu-name").value = "";
             
-       
-        
     };
 
-    $("#espresso-menu-submit-button").addEventListener("click", () => {
-      addMenuName();
+    const updateMenuName = (e) => {
+        const $menuName = e.target.closest("li").querySelector(".menu-name");
+        const updatedMenuName = prompt("Please, edit menu name.", $menuName.innerText );
+        $menuName.innerText = updatedMenuName;
+    }
+
+    const removeMenuName = (e) => {
+      if (confirm("Are you sure you want to remove it?")) {
+        e.target.closest("li").remove();
+        updateMenuCount();
+      }
+    }
+
+    // Menu list Edit button setting
+    $("#espresso-menu-list").addEventListener("click", (e) => {
+      
+      if (e.target.classList.contains("menu-edit-button")) {
+        updateMenuName(e);
+      }
+
+      // Remove menu setting
+      if (e.target.classList.contains("menu-remove-button")) {
+        removeMenuName(e);
+      }
     });
 
+    // form tag prevent default setting
+    $("#espresso-menu-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
+
+    $("#espresso-menu-submit-button").addEventListener("click", addMenuName);
+
     // fetch Menu input value
-    $("#espresso-menu-name")
-    .addEventListener("keypress", (e) => {
+    $("#espresso-menu-name").addEventListener("keypress", (e) => {
       if (e.key !== "Enter") {
         return;
       }
       addMenuName();
-    });
-
-
-    
+    });  
 
 }
 
